@@ -1,1 +1,901 @@
 
+/* =========================
+   MOIUZ CLOTH
+   LUXURY FASHION WEBSITE
+========================= */
+
+:root {
+  --black: #0b0b0b;
+  --dark: #111111;
+  --cream: #f4f0e8;
+  --gold: #b89b63;
+  --white: #ffffff;
+  --gray: #999999;
+  --border: rgba(255,255,255,0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #080808;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.8s ease;
+}
+
+.loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 42px;
+  letter-spacing: 10px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 29px;
+  letter-spacing: 5px;
+  font-weight: 600;
+}
+
+.logo span {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 7px;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-top: -4px;
+}
+
+.navbar {
+  display: flex;
+  gap: 42px;
+}
+
+.navbar a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: 0.3s;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.header-icons button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.menu-btn {
+  display: none;
+  width: 28px;
+}
+
+.menu-btn span {
+  height: 1px;
+  background: white;
+  display: block;
+  margin: 6px 0;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100px;
+  background: #111;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  padding: 0 7%;
+  transition: 0.5s;
+}
+
+.search-box.active {
+  right: 0;
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  padding: 15px 0;
+  color: white;
+  font-size: 18px;
+  outline: none;
+}
+
+.search-box button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+  margin-left: 25px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 9%;
+  background:
+    url("https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=2000&q=90")
+    center/cover no-repeat;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.85),
+      rgba(0,0,0,0.3),
+      rgba(0,0,0,0.2)
+    );
+}
+
+.hero-content {
+  position: relative;
+  max-width: 720px;
+  z-index: 2;
+}
+
+.small-title {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(70px, 10vw, 145px);
+  line-height: 0.78;
+  font-weight: 500;
+  letter-spacing: -4px;
+}
+
+.hero h1 i {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.hero-text {
+  max-width: 440px;
+  color: #ccc;
+  font-size: 13px;
+  line-height: 2;
+  margin: 35px 0;
+}
+
+.luxury-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 35px;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 17px 23px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  transition: 0.4s;
+}
+
+.luxury-btn:hover {
+  background: var(--cream);
+  color: #111;
+  border-color: var(--cream);
+}
+
+.luxury-btn span {
+  font-size: 18px;
+}
+
+.scroll-down {
+  position: absolute;
+  right: 6%;
+  bottom: 40px;
+  font-size: 8px;
+  letter-spacing: 3px;
+  writing-mode: vertical-rl;
+  color: #bbb;
+}
+
+.scroll-down span {
+  height: 55px;
+  width: 1px;
+  background: var(--gold);
+  display: block;
+  margin-bottom: 12px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+  text-align: center;
+  padding: 140px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.intro h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(40px, 5vw, 70px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.intro h2 i {
+  color: var(--gold);
+}
+
+.intro > p:last-child {
+  color: #999;
+  font-size: 13px;
+  line-height: 2;
+  max-width: 550px;
+  margin: 30px auto 0;
+}
+
+
+/* =========================
+   COLLECTION
+========================= */
+
+.collection {
+  padding: 100px 7%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 55px;
+}
+
+.section-heading h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 0.8;
+}
+
+.section-heading h2 i {
+  color: var(--gold);
+}
+
+.view-all {
+  font-size: 9px;
+  letter-spacing: 3px;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 8px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 0.75;
+  background: #181818;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.8s;
+}
+
+.product-card:hover img {
+  transform: scale(1.06);
+}
+
+.product-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--cream);
+  color: #111;
+  font-size: 7px;
+  letter-spacing: 2px;
+  padding: 8px 10px;
+}
+
+.quick-add {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+  padding: 17px;
+  background: rgba(10,10,10,0.9);
+  border: none;
+  color: white;
+  font-size: 8px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.product-card:hover .quick-add {
+  bottom: 0;
+}
+
+.product-info {
+  padding: 18px 2px;
+}
+
+.product-info h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.product-info p {
+  color: #777;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin: 5px 0 12px;
+}
+
+.product-info strong {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+
+.fashion-banner {
+  min-height: 700px;
+  background:
+    linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=2000&q=90")
+    center/cover fixed;
+  display: flex;
+  align-items: center;
+  padding: 10%;
+}
+
+.banner-content h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(65px, 9vw, 130px);
+  font-weight: 400;
+  line-height: 0.75;
+}
+
+.banner-content h2 i {
+  color: var(--gold);
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 700px;
+}
+
+.about-image {
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-content {
+  padding: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-content h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(50px, 5vw, 80px);
+  font-weight: 400;
+  line-height: 0.8;
+  margin-bottom: 35px;
+}
+
+.about-content h2 i {
+  color: var(--gold);
+}
+
+.about-content p:not(.small-title) {
+  color: #999;
+  font-size: 13px;
+  line-height: 2;
+  max-width: 450px;
+  margin-bottom: 20px;
+}
+
+.text-link {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-top: 15px;
+}
+
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.newsletter {
+  text-align: center;
+  padding: 130px 20px;
+  border-top: 1px solid #222;
+}
+
+.newsletter h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 65px;
+  font-weight: 400;
+}
+
+.newsletter > p:not(.small-title) {
+  color: #888;
+  font-size: 12px;
+  line-height: 2;
+  max-width: 500px;
+  margin: 20px auto 35px;
+}
+
+.newsletter form {
+  max-width: 550px;
+  margin: auto;
+  display: flex;
+  border-bottom: 1px solid #555;
+}
+
+.newsletter input {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  outline: none;
+  color: white;
+  font-size: 12px;
+}
+
+.newsletter button {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+#formMessage {
+  color: var(--gold);
+  margin-top: 20px;
+  font-size: 11px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #070707;
+  padding: 80px 7% 25px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+  padding-bottom: 70px;
+}
+
+.footer-brand p {
+  color: #777;
+  font-size: 11px;
+  line-height: 2;
+  margin-top: 25px;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footer-column h4 {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  color: #777;
+  font-size: 10px;
+  transition: 0.3s;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+
+/* =========================
+   CART
+========================= */
+
+.cart-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+
+.cart-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-box {
+  width: min(450px, 100%);
+  height: 100%;
+  background: #111;
+  padding: 60px 40px;
+  transform: translateX(100%);
+  transition: 0.5s;
+}
+
+.cart-popup.active .cart-box {
+  transform: translateX(0);
+}
+
+.close-cart {
+  position: absolute;
+  right: 30px;
+  top: 25px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.cart-box h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 50px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.cart-box h2 i {
+  color: var(--gold);
+}
+
+.empty-cart {
+  color: #777;
+  font-size: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+  padding: 18px 0;
+  font-size: 12px;
+}
+
+.cart-total {
+  border-top: 1px solid #444;
+  margin-top: 30px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.cart-total strong {
+  color: var(--gold);
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 30px;
+  padding: 18px;
+  background: var(--cream);
+  color: #111;
+  border: none;
+  font-size: 9px;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    height: 100vh;
+    background: #0b0b0b;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    transition: 0.5s;
+  }
+
+  .navbar.active {
+    right: 0;
+  }
+
+  .navbar a {
+    font-size: 13px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    height: 600px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .header {
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 23px;
+  }
+
+  .hero {
+    padding: 0 7%;
+    min-height: 650px;
+  }
+
+  .hero h1 {
+    font-size: 70px;
+  }
+
+  .scroll-down {
+    display: none;
+  }
+
+  .intro {
+    padding: 100px 25px;
+  }
+
+  .intro h2 {
+    font-size: 42px;
+  }
+
+  .collection {
+    padding: 70px 5%;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .section-heading h2 {
+    font-size: 50px;
+  }
+
+  .products {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .product-info h3 {
+    font-size: 21px;
+  }
+
+  .fashion-banner {
+    min-height: 600px;
+    padding: 8%;
+  }
+
+  .banner-content h2 {
+    font-size: 70px;
+  }
+
+  .about-content {
+    padding: 80px 7%;
+  }
+
+  .newsletter {
+    padding: 100px 25px;
+  }
+
+  .newsletter h2 {
+    font-size: 50px;
+  }
+
+  .newsletter form {
+    display: block;
+    border-bottom: none;
+  }
+
+  .newsletter input {
+    width: 100%;
+    border-bottom: 1px solid #555;
+  }
+
+  .newsletter button {
+    margin-top: 20px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 20px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  }
